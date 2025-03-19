@@ -1,0 +1,23 @@
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes border-glow {
+    0% {
+        opacity: 0.5;
+        filter: blur(8px);
+    }
+    50% {
+        opacity: 0.8;
+        filter: blur(12px);
+    }
+    100% {
+        opacity: 0.5;
+        filter: blur(8px);
+    }
+}

@@ -14,7 +14,7 @@ def custom_button(text: str, icon_name: str) -> rx.Component:
     return rx.button(
         rx.desktop_only(rx.text(text, class_name="text-xl")),
         rx.mobile_and_tablet(rx.icon(icon_name, size=20)),
-        class_name="p-2 md:p-4",
+        class_name="p-2 md:p-4 cursor-pointer",
         style={
             "background_color": "white",
             "color": "black",
@@ -28,6 +28,7 @@ def custom_button(text: str, icon_name: str) -> rx.Component:
             },
             "transition": "all 0.2s ease-in-out",
         },
+        on_click=rx.redirect("https://github.com/bm611/lumen"),
     )
 
 
@@ -54,7 +55,7 @@ def nav() -> rx.Component:
             ),
             class_name="flex justify-between items-center",
         ),
-        class_name="mt-1 mx-auto w-full bg-white border border-gray-200 rounded-2xl p-4 md:p-6 shadow-md",
+        class_name="mt-1 mx-auto w-full bg-white border border-gray-200 rounded-3xl p-4 md:p-6 shadow-xl",
     )
 
 
@@ -62,13 +63,13 @@ def hero() -> rx.Component:
     return rx.box(
         rx.vstack(
             rx.heading(
-                "Lumen: Where Imagination Comes to Life",
-                class_name="text-3xl md:text-5xl font-bold text-left md:text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-blue-500 to-indigo-600 mb-4",
+                "Where Imagination Comes to Life",
+                class_name="text-4xl md:text-6xl tracking-wide font-bold text-left md:text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-blue-500 to-indigo-600 mb-2",
             ),
             rx.text(
-                "Instantly generate magical personalized stories tailored to your interests. "
+                "Instantly generate magical stories tailored to your interests. "
                 "Our AI creates unique adventures you'll treasure forever.",
-                class_name="text-xl md:text-2xl text-left md:text-center text-gray-700 max-w-3xl mx-auto mb-8",
+                class_name="text-lg md:text-2xl text-left md:text-center text-gray-700 max-w-3xl mx-auto mb-8",
             ),
             rx.vstack(
                 rx.box(
@@ -81,11 +82,42 @@ def hero() -> rx.Component:
                 ),
                 rx.button(
                     rx.hstack(
-                        rx.icon("sparkles", size=18),
-                        rx.text("Generate Story", class_name="tracking-wide"),
-                        spacing="2",
+                        rx.icon("sparkles", size=22),
+                        rx.text(
+                            "Generate Story",
+                            class_name="tracking-wide text-lg md:text-2xl",
+                        ),
+                        rx.icon("sparkles", size=22),
+                        class_name="flex items-center",
                     ),
-                    class_name="mt-4 bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-lg py-3 px-6 font-bold shadow-md shadow-purple-300/30 hover:shadow-lg hover:shadow-purple-300/40 hover:-translate-y-0.5 transition-all duration-200",
+                    class_name="mt-4 bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-lg p-6 font-bold shadow-md shadow-purple-300/30 hover:shadow-lg hover:shadow-purple-300/40 hover:-translate-y-0.5 transition-all duration-200 relative overflow-hidden shimmer-button",
+                    style={
+                        "position": "relative",
+                        "_before": {
+                            "content": "''",
+                            "position": "absolute",
+                            "top": "0",
+                            "left": "-100%",
+                            "width": "100%",
+                            "height": "100%",
+                            "background": "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)",
+                            "animation": "shimmer 2s infinite",
+                        },
+                        "_after": {
+                            "content": "''",
+                            "position": "absolute",
+                            "top": "-2px",
+                            "left": "-2px",
+                            "right": "-2px",
+                            "bottom": "-2px",
+                            "background": "linear-gradient(90deg, #8B5CF6, #6366F1, #8B5CF6)",
+                            "border_radius": "0.5rem",
+                            "z_index": "-1",
+                            "animation": "border-glow 3s infinite",
+                            "filter": "blur(8px)",
+                            "opacity": "0.7",
+                        },
+                    },
                 ),
                 class_name="w-full max-w-2xl mx-auto mt-2",
                 spacing="2",

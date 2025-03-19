@@ -15,13 +15,13 @@ def index() -> rx.Component:
 
 style = {
     "font_family": "Grotesk",
-    "background_color": "#f0f0f0",
+    "background": "linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%)",
 }
 
 
 app = rx.App(
     style=rx.Style(style),
-    stylesheets=["/fonts/font.css"],
+    stylesheets=["/fonts/font.css", "/animations.css"],
     theme=rx.theme(
         appearance="light",
     ),
