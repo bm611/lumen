@@ -1,7 +1,7 @@
 """Welcome to Reflex! This file outlines the steps to create a basic app."""
 
 import reflex as rx
-from .components import nav, hero
+from .components import nav, hero, render_story
 
 
 @rx.page(route="/", title="Lumen")
@@ -9,6 +9,15 @@ def index() -> rx.Component:
     return rx.container(
         nav(),
         hero(),
+        size="4",
+    )
+
+
+@rx.page(route="/story")
+def story() -> rx.Component:
+    return rx.container(
+        nav(),
+        render_story(),
         size="4",
     )
 
