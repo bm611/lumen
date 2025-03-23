@@ -2,34 +2,36 @@ import reflex as rx
 from app.state import StoryState
 
 
-def custom_button(text: str, icon_name: str) -> rx.Component:
-    """Create a custom button with desktop text and mobile icon.
+def custom_button(text: str, icon: str) -> rx.Component:
+    return rx.button(
+        rx.hstack(
+            rx.icon(icon, size=16),
+            rx.text(text),
+            class_name="items-center gap-1",
+        ),
+        class_name="px-3 py-1.5 rounded-lg text-sm bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-all",
+    )
+
+
+def category_button(
+    text: str, icon: str, bg_color: str, text_color: str, hover_color: str
+) -> rx.Component:
+    """Create a category button with consistent styling.
 
     Args:
-        text: The text to display on desktop
-        icon_name: The name of the icon to display on mobile
-
-    Returns:
-        A button component with responsive display
+        text: The button text
+        icon: The icon name
+        bg_color: Background color class (e.g., "indigo-100")
+        text_color: Text color class (e.g., "indigo-800")
+        hover_color: Hover background color class (e.g., "indigo-200")
     """
     return rx.button(
-        rx.desktop_only(rx.text(text, class_name="text-xl")),
-        rx.mobile_and_tablet(rx.icon(icon_name, size=20)),
-        class_name="p-2 md:p-4 cursor-pointer",
-        style={
-            "background_color": "white",
-            "color": "black",
-            "border": "1px solid black",
-            "border_radius": "0.5rem",
-            "box_shadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-            "_hover": {
-                "background_color": "#f9f9f9",
-                "transform": "scale(1.05)",
-                "box_shadow": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-            },
-            "transition": "all 0.2s ease-in-out",
-        },
-        on_click=rx.redirect("https://github.com/bm611/lumen"),
+        rx.hstack(
+            rx.icon(icon, size=14),
+            rx.text(text),
+            class_name="items-center justify-center",
+        ),
+        class_name=f"px-3 py-1.5 bg-{bg_color} text-{text_color} rounded-full text-sm hover:bg-{hover_color} transition-all whitespace-nowrap",
     )
 
 
@@ -61,6 +63,132 @@ def nav() -> rx.Component:
     )
 
 
+def story_craft_card() -> rx.Component:
+    return rx.vstack(
+        rx.box(
+            rx.hstack(
+                rx.icon(
+                    "wand-sparkles",
+                    size=24,
+                    color="indigo",
+                    class_name="",
+                ),
+                rx.text(
+                    "Craft Your Tale",
+                    class_name="text-xl md:text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent",
+                ),
+                class_name="mb-2 items-center justify-left w-full",
+            ),
+            rx.vstack(
+                rx.text_area(
+                    placeholder="Enter a story theme or topic...",
+                    variant="soft",
+                    class_name="w-full rounded-xl p-1 border-2 border-black focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all resize-none min-h-[100px] text-gray-700 bg-white/80 backdrop-blur-sm shadow-sm",
+                    style={"font_family": "Grotesk"},
+                ),
+                align_items="start",
+                width="100%",
+                spacing="1",
+            ),
+            # Genre section with scrollable container
+            rx.vstack(
+                rx.hstack(
+                    rx.icon("bookmark", size=18, color="indigo"),
+                    rx.text(
+                        "Choose a genre",
+                        class_name="text-sm font-medium text-gray-700",
+                    ),
+                    class_name="items-center",
+                    spacing="2",
+                ),
+                rx.box(
+                    rx.flex(
+                        category_button(
+                            "Fantasy",
+                            "sparkles",
+                            "indigo-100",
+                            "indigo-800",
+                            "indigo-200",
+                        ),
+                        category_button(
+                            "Adventure", "globe", "green-100", "green-800", "green-200"
+                        ),
+                        category_button(
+                            "Mystery",
+                            "message_circle_question",
+                            "purple-100",
+                            "purple-800",
+                            "purple-200",
+                        ),
+                        category_button(
+                            "Sci-Fi", "rocket", "blue-100", "blue-800", "blue-200"
+                        ),
+                        category_button(
+                            "Fairytale", "star", "pink-100", "pink-800", "pink-200"
+                        ),
+                        class_name="space-x-2 overflow-x-auto py-2 flex-nowrap md:flex-wrap md:gap-y-2 justify-start",
+                    ),
+                    class_name="w-full overflow-x-auto scrollbar-hide",
+                ),
+                spacing="2",
+                align_items="start",
+                width="100%",
+            ),
+            # Story Tone section with scrollable container
+            rx.vstack(
+                rx.hstack(
+                    rx.icon("music_2", size=18, color="amber"),
+                    rx.text(
+                        "Story Tone",
+                        class_name="text-sm font-medium text-gray-700",
+                    ),
+                    class_name="items-center",
+                    spacing="2",
+                ),
+                rx.box(
+                    rx.flex(
+                        category_button(
+                            "Whimsical", "sun", "yellow-100", "yellow-800", "yellow-200"
+                        ),
+                        category_button(
+                            "Dramatic", "flame", "red-100", "red-800", "red-200"
+                        ),
+                        category_button(
+                            "Educational",
+                            "graduation_cap",
+                            "teal-100",
+                            "teal-800",
+                            "teal-200",
+                        ),
+                        category_button(
+                            "Humorous",
+                            "smile_plus",
+                            "amber-100",
+                            "amber-800",
+                            "amber-200",
+                        ),
+                        category_button(
+                            "Inspirational",
+                            "lightbulb",
+                            "violet-100",
+                            "violet-800",
+                            "violet-200",
+                        ),
+                        class_name="space-x-2 overflow-x-auto py-2 flex-nowrap md:flex-wrap md:gap-y-2 justify-start",
+                    ),
+                    class_name="w-full overflow-x-auto scrollbar-hide",
+                ),
+                spacing="2",
+                align_items="start",
+                width="100%",
+                margin_top="4",
+            ),
+            class_name="w-full border border-gray-200 rounded-2xl p-4 md:p-6 space-y-4 bg-white shadow-sm hover:shadow-md transition-all",
+        ),
+        class_name="w-full mx-auto mt-2",
+    )
+
+
 def hero() -> rx.Component:
     return rx.box(
         rx.vstack(
@@ -74,13 +202,7 @@ def hero() -> rx.Component:
                 class_name="text-lg md:text-2xl text-left md:text-center text-gray-700 max-w-3xl mx-auto mb-8",
             ),
             rx.vstack(
-                rx.box(
-                    rx.input(
-                        placeholder="Enter a story idea or theme...",
-                        class_name="w-full h-14 px-4 py-2 text-lg md:text-2xl rounded-md bg-transparent border-2 border-black",
-                    ),
-                    class_name="w-full max-w-2xl relative",
-                ),
+                story_craft_card(),
                 rx.button(
                     rx.hstack(
                         rx.icon("sparkles", size=22),
@@ -129,7 +251,7 @@ def hero() -> rx.Component:
             align="start",
             class_name="py-12 md:py-20 md:items-center",
         ),
-        class_name="w-full max-w-6xl mx-auto px-4",
+        class_name="w-full max-w-6xl mx-auto px-2",
     )
 
 
