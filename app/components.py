@@ -6,10 +6,10 @@ def custom_button(text: str, icon: str) -> rx.Component:
     return rx.button(
         rx.hstack(
             rx.icon(icon, size=16),
-            rx.text(text),
-            class_name="items-center gap-1",
+            rx.text(text, class_name="font-medium"),
+            class_name="items-center gap-2",
         ),
-        class_name="px-3 py-1.5 rounded-lg text-sm bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-all",
+        class_name="px-4 py-2 md:px-5 md:py-2.5 rounded-xl text-sm md:text-base bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 hover:shadow-md hover:-translate-y-0.5 border border-indigo-100 transition-all duration-200",
     )
 
 
@@ -44,7 +44,7 @@ def nav() -> rx.Component:
                     class_name="transform -translate-y-1",
                 ),
                 rx.text(
-                    "Lumen",
+                    "lumen",
                     class_name="text-3xl md:text-4xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent relative hover:scale-105 transition-transform duration-300",
                 ),
                 class_name="flex justify-center items-center cursor-pointer",
@@ -63,129 +63,174 @@ def nav() -> rx.Component:
     )
 
 
-def story_craft_card() -> rx.Component:
-    return rx.vstack(
-        rx.box(
+def fancy_button():
+    return (
+        rx.button(
             rx.hstack(
-                rx.icon(
-                    "wand-sparkles",
-                    size=24,
-                    color="indigo",
-                    class_name="",
-                ),
+                rx.icon("sparkles", size=22),
                 rx.text(
-                    "Craft Your Tale",
-                    class_name="text-xl md:text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent",
+                    "Generate Story",
+                    class_name="tracking-wide text-lg md:text-2xl",
                 ),
-                class_name="mb-2 items-center justify-left w-full",
+                rx.icon("sparkles", size=22),
+                class_name="flex items-center",
             ),
-            rx.vstack(
-                rx.text_area(
-                    placeholder="Enter a story theme or topic...",
-                    variant="soft",
-                    class_name="w-full rounded-xl p-1 border-2 border-black focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all resize-none min-h-[100px] text-gray-700 bg-white/80 backdrop-blur-sm shadow-sm",
-                    style={"font_family": "Grotesk"},
-                ),
-                align_items="start",
-                width="100%",
-                spacing="1",
-            ),
-            # Genre section with scrollable container
-            rx.vstack(
-                rx.hstack(
-                    rx.icon("bookmark", size=18, color="indigo"),
-                    rx.text(
-                        "Choose a genre",
-                        class_name="text-sm font-medium text-gray-700",
-                    ),
-                    class_name="items-center",
-                    spacing="2",
-                ),
-                rx.box(
-                    rx.flex(
-                        category_button(
-                            "Fantasy",
-                            "sparkles",
-                            "indigo-100",
-                            "indigo-800",
-                            "indigo-200",
-                        ),
-                        category_button(
-                            "Adventure", "globe", "green-100", "green-800", "green-200"
-                        ),
-                        category_button(
-                            "Mystery",
-                            "message_circle_question",
-                            "purple-100",
-                            "purple-800",
-                            "purple-200",
-                        ),
-                        category_button(
-                            "Sci-Fi", "rocket", "blue-100", "blue-800", "blue-200"
-                        ),
-                        category_button(
-                            "Fairytale", "star", "pink-100", "pink-800", "pink-200"
-                        ),
-                        class_name="space-x-2 overflow-x-auto py-2 flex-nowrap md:flex-wrap md:gap-y-2 justify-start",
-                    ),
-                    class_name="w-full overflow-x-auto scrollbar-hide",
-                ),
-                spacing="2",
-                align_items="start",
-                width="100%",
-            ),
-            # Story Tone section with scrollable container
-            rx.vstack(
-                rx.hstack(
-                    rx.icon("music_2", size=18, color="amber"),
-                    rx.text(
-                        "Story Tone",
-                        class_name="text-sm font-medium text-gray-700",
-                    ),
-                    class_name="items-center",
-                    spacing="2",
-                ),
-                rx.box(
-                    rx.flex(
-                        category_button(
-                            "Whimsical", "sun", "yellow-100", "yellow-800", "yellow-200"
-                        ),
-                        category_button(
-                            "Dramatic", "flame", "red-100", "red-800", "red-200"
-                        ),
-                        category_button(
-                            "Educational",
-                            "graduation_cap",
-                            "teal-100",
-                            "teal-800",
-                            "teal-200",
-                        ),
-                        category_button(
-                            "Humorous",
-                            "smile_plus",
-                            "amber-100",
-                            "amber-800",
-                            "amber-200",
-                        ),
-                        category_button(
-                            "Inspirational",
-                            "lightbulb",
-                            "violet-100",
-                            "violet-800",
-                            "violet-200",
-                        ),
-                        class_name="space-x-2 overflow-x-auto py-2 flex-nowrap md:flex-wrap md:gap-y-2 justify-start",
-                    ),
-                    class_name="w-full overflow-x-auto scrollbar-hide",
-                ),
-                spacing="2",
-                align_items="start",
-                width="100%",
-                margin_top="4",
-            ),
-            class_name="w-full border border-gray-200 rounded-2xl p-4 md:p-6 space-y-4 bg-white shadow-sm hover:shadow-md transition-all",
+            class_name="mt-4 cursor-pointer bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-lg p-6 font-bold shadow-md shadow-purple-300/30 hover:shadow-lg hover:shadow-purple-300/40 hover:-translate-y-0.5 transition-all duration-200 relative overflow-hidden shimmer-button",
+            style={
+                "position": "relative",
+                "_before": {
+                    "content": "''",
+                    "position": "absolute",
+                    "top": "0",
+                    "left": "-100%",
+                    "width": "100%",
+                    "height": "100%",
+                    "background": "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)",
+                    "animation": "shimmer 2s infinite",
+                },
+                "_after": {
+                    "content": "''",
+                    "position": "absolute",
+                    "top": "-2px",
+                    "left": "-2px",
+                    "right": "-2px",
+                    "bottom": "-2px",
+                    "background": "linear-gradient(90deg, #8B5CF6, #6366F1, #8B5CF6)",
+                    "border_radius": "0.5rem",
+                    "z_index": "-1",
+                    "animation": "border-glow 3s infinite",
+                    "filter": "blur(8px)",
+                    "opacity": "0.7",
+                },
+            },
+            on_click=rx.redirect("/story"),
         ),
-        class_name="w-full mx-auto mt-2",
+    )
+
+
+def story_craft_card() -> rx.Component:
+    return rx.box(
+        rx.hstack(
+            rx.icon(
+                "wand-sparkles",
+                size=24,
+                color="indigo",
+                class_name="",
+            ),
+            rx.text(
+                "Craft Your Tale",
+                class_name="text-xl md:text-2xl tracking-wide font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent",
+            ),
+            class_name="mb-2 items-center justify-left w-full",
+        ),
+        rx.vstack(
+            rx.text_area(
+                placeholder="Enter a story theme or topic...",
+                variant="soft",
+                class_name="w-full rounded-xl p-1 border-2 border-black focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all resize-none min-h-[100px] text-gray-700 bg-white/80 backdrop-blur-sm shadow-sm",
+            ),
+            align_items="start",
+            width="100%",
+            spacing="1",
+        ),
+        # Genre section with scrollable container
+        rx.vstack(
+            rx.hstack(
+                rx.icon("bookmark", size=18, color="indigo"),
+                rx.text(
+                    "Choose a genre",
+                    class_name="text-sm font-medium text-gray-700",
+                ),
+                class_name="items-center",
+                spacing="2",
+            ),
+            rx.box(
+                rx.flex(
+                    category_button(
+                        "Fantasy",
+                        "sparkles",
+                        "indigo-100",
+                        "indigo-800",
+                        "indigo-200",
+                    ),
+                    category_button(
+                        "Adventure", "globe", "green-100", "green-800", "green-200"
+                    ),
+                    category_button(
+                        "Mystery",
+                        "message_circle_question",
+                        "purple-100",
+                        "purple-800",
+                        "purple-200",
+                    ),
+                    category_button(
+                        "Sci-Fi", "rocket", "blue-100", "blue-800", "blue-200"
+                    ),
+                    category_button(
+                        "Fairytale", "star", "pink-100", "pink-800", "pink-200"
+                    ),
+                    class_name="space-x-2 overflow-x-auto py-2 flex-nowrap md:flex-wrap md:gap-y-2 justify-start",
+                ),
+                class_name="w-full overflow-x-auto scrollbar-hide",
+            ),
+            spacing="2",
+            align_items="start",
+            width="100%",
+        ),
+        # Story Tone section with scrollable container
+        rx.vstack(
+            rx.hstack(
+                rx.icon("music_2", size=18, color="amber"),
+                rx.text(
+                    "Story Tone",
+                    class_name="text-sm font-medium text-gray-700",
+                ),
+                class_name="items-center",
+                spacing="2",
+            ),
+            rx.box(
+                rx.flex(
+                    category_button(
+                        "Whimsical", "sun", "yellow-100", "yellow-800", "yellow-200"
+                    ),
+                    category_button(
+                        "Dramatic", "flame", "red-100", "red-800", "red-200"
+                    ),
+                    category_button(
+                        "Educational",
+                        "graduation_cap",
+                        "teal-100",
+                        "teal-800",
+                        "teal-200",
+                    ),
+                    category_button(
+                        "Humorous",
+                        "smile_plus",
+                        "amber-100",
+                        "amber-800",
+                        "amber-200",
+                    ),
+                    category_button(
+                        "Inspirational",
+                        "lightbulb",
+                        "violet-100",
+                        "violet-800",
+                        "violet-200",
+                    ),
+                    class_name="space-x-2 overflow-x-auto py-2 flex-nowrap md:flex-wrap md:gap-y-2 justify-start",
+                ),
+                class_name="w-full overflow-x-auto scrollbar-hide",
+            ),
+            spacing="2",
+            align_items="start",
+            width="100%",
+            margin_top="4",
+        ),
+        rx.center(
+            fancy_button(),
+            class_name="mb-4 md:mb-0",
+        ),
+        class_name="w-full border border-gray-200 md:rounded-2xl rounded-t-3xl md:p-6 p-4 space-y-4 bg-white shadow-2xl transition-all md:h-auto h-[calc(80vh-11rem)] md:max-h-none overflow-y-auto",
     )
 
 
@@ -199,59 +244,17 @@ def hero() -> rx.Component:
             rx.text(
                 "Instantly generate magical stories tailored to your interests. "
                 "Our AI creates unique adventures you'll treasure forever.",
-                class_name="text-lg md:text-2xl text-left md:text-center text-gray-700 max-w-3xl mx-auto mb-8",
+                class_name="text-lg md:text-2xl text-left md:text-center text-gray-700 max-w-3xl mx-auto mb-4 md:mb-8",
             ),
             rx.vstack(
                 story_craft_card(),
-                rx.button(
-                    rx.hstack(
-                        rx.icon("sparkles", size=22),
-                        rx.text(
-                            "Generate Story",
-                            class_name="tracking-wide text-lg md:text-2xl",
-                        ),
-                        rx.icon("sparkles", size=22),
-                        class_name="flex items-center",
-                    ),
-                    class_name="mt-4 cursor-pointer bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-lg p-6 font-bold shadow-md shadow-purple-300/30 hover:shadow-lg hover:shadow-purple-300/40 hover:-translate-y-0.5 transition-all duration-200 relative overflow-hidden shimmer-button",
-                    style={
-                        "position": "relative",
-                        "_before": {
-                            "content": "''",
-                            "position": "absolute",
-                            "top": "0",
-                            "left": "-100%",
-                            "width": "100%",
-                            "height": "100%",
-                            "background": "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)",
-                            "animation": "shimmer 2s infinite",
-                        },
-                        "_after": {
-                            "content": "''",
-                            "position": "absolute",
-                            "top": "-2px",
-                            "left": "-2px",
-                            "right": "-2px",
-                            "bottom": "-2px",
-                            "background": "linear-gradient(90deg, #8B5CF6, #6366F1, #8B5CF6)",
-                            "border_radius": "0.5rem",
-                            "z_index": "-1",
-                            "animation": "border-glow 3s infinite",
-                            "filter": "blur(8px)",
-                            "opacity": "0.7",
-                        },
-                    },
-                    on_click=rx.redirect("/story"),
-                ),
-                class_name="w-full max-w-2xl mx-auto mt-2",
-                spacing="2",
-                align="center",
+                class_name="w-full md:max-w-4xl mx-auto mt-2 md:static fixed bottom-0 left-0 right-0",
             ),
             spacing="3",
             align="start",
-            class_name="py-12 md:py-20 md:items-center",
+            class_name="py-8 md:py-20 md:items-center",
         ),
-        class_name="w-full max-w-6xl mx-auto px-2",
+        class_name="w-full max-w-6xl mx-auto px-4 md:px-4 pb-0 md:pb-4 relative",
     )
 
 
