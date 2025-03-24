@@ -6,10 +6,10 @@ def custom_button(text: str, icon: str) -> rx.Component:
     return rx.button(
         rx.hstack(
             rx.icon(icon, size=16),
-            rx.text(text, class_name="font-medium"),
-            class_name="items-center gap-2",
+            rx.text(text, class_name="font-bold"),
+            class_name="items-center gap-1 md:gap-2",
         ),
-        class_name="px-4 py-2 md:px-5 md:py-2.5 rounded-xl text-sm md:text-base bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 hover:shadow-md hover:-translate-y-0.5 border border-indigo-100 transition-all duration-200",
+        class_name="px-4 py-2 md:px-5 md:py-2.5 rounded-xl text-sm md:text-base bg-gradient-to-r from-teal-50 to-emerald-50 text-teal-700 hover:shadow-md hover:-translate-y-0.5 border border-teal-100 transition-all duration-200 relative overflow-hidden",
     )
 
 
@@ -52,14 +52,14 @@ def nav() -> rx.Component:
                 on_click=rx.redirect("/"),
             ),
             rx.hstack(
-                custom_button("sync", "refresh-cw"),
+                # custom_button("sync", "refresh-cw"),
                 custom_button("github", "github"),
                 class_name="flex justify-center items-center",
                 spacing="2",
             ),
             class_name="flex justify-between items-center",
         ),
-        class_name="mt-1 mx-auto w-full bg-white border border-gray-200 rounded-3xl p-4 md:p-6 shadow-xl",
+        class_name="mt-1 mx-auto w-full md:w-5/6 bg-white border border-gray-200 rounded-3xl p-2 md:p-4 shadow-xl",
     )
 
 
@@ -121,7 +121,7 @@ def story_craft_card() -> rx.Component:
                 "Craft Your Tale",
                 class_name="text-xl md:text-2xl tracking-wide font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent",
             ),
-            class_name="mb-2 items-center justify-left w-full",
+            class_name="mb-2 mt-4 items-center justify-left w-full",
         ),
         rx.vstack(
             rx.text_area(
@@ -230,7 +230,24 @@ def story_craft_card() -> rx.Component:
             fancy_button(),
             class_name="mb-4 md:mb-0",
         ),
-        class_name="w-full border border-gray-200 md:rounded-2xl rounded-t-3xl md:p-6 p-4 space-y-4 bg-white shadow-2xl transition-all md:h-auto h-[calc(80vh-11rem)] md:max-h-none overflow-y-auto",
+        class_name="w-full border border-gray-200 md:rounded-3xl rounded-t-3xl md:p-6 p-4 space-y-4 bg-white shadow-2xl transition-all md:h-auto h-[55vh] md:max-h-none overflow-y-auto shadow-t-lg relative",
+        style={
+            "box_shadow": "0 -12px 20px -5px rgba(0, 0, 0, 0.15), 0 -6px 10px -3px rgba(0, 0, 0, 0.1)",
+            "_before": {
+                "content": "''",
+                "position": "absolute",
+                "top": "-2px",
+                "left": "0",
+                "right": "0",
+                "height": "4px",
+                "background": "linear-gradient(90deg, #9F7AEA, #6366F1, #9F7AEA)",
+                "border_radius": "3px",
+                "z_index": "1",
+                "animation": "border-glow 3s infinite",
+                "filter": "blur(4px)",
+                "opacity": "0.8",
+            },
+        },
     )
 
 
